@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <RootNamespace>ClienteAgentesGraphQL</RootNamespace>
+    <AssemblyName>ClienteAgentesGraphQL</AssemblyName>
+    <Version>1.0.0</Version>
+    <Product>Sistema de Agentes Inteligentes - Cliente GraphQL</Product>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Archivo con la URL del servidor GraphQL; se copia junto al .exe -->
+    <None Update="servidor.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

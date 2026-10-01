@@ -1,0 +1,49 @@
+# ============================================================
+#  Esquema GraphQL - Sistema de Agentes Inteligentes
+#  Objeto gestionado: AgenteNavegacion (Clase C del Proyecto 1)
+# ============================================================
+
+type Query {
+    "Variante 1 de listado: TODOS los agentes de navegacion."
+    agentesNavegacion: [AgenteNavegacion!]!
+
+    "Variante 2 de listado: filtrado en el SERVIDOR por nombre (contiene) y/o estado operativo."
+    agentesNavegacionPorFiltro(nombre: String, estadoOperativo: String): [AgenteNavegacion!]!
+
+    "Consulta UN SOLO agente a partir de su ID."
+    agenteNavegacionPorId(idAgente: Int!): AgenteNavegacion
+}
+
+type Mutation {
+    crearAgenteNavegacion(input: AgenteNavegacionInput!): AgenteNavegacion!
+    actualizarAgenteNavegacion(input: AgenteNavegacionInput!): AgenteNavegacion!
+    eliminarAgenteNavegacion(idAgente: Int!): AgenteNavegacion!
+}
+
+input AgenteNavegacionInput {
+    idAgente: Int!
+    nombre: String!
+    nivelAutonomia: Float!
+    "ACTIVO, INACTIVO o MANTENIMIENTO"
+    estadoOperativo: String!
+    nivelConfianza: Float!
+    origen: String!
+    destino: String!
+    precisionGPS: Float!
+    "Formato ISO: yyyy-MM-ddTHH:mm:ss (ej. 2026-09-30T14:30:00)"
+    fechaUltimaCalibracion: String!
+}
+
+type AgenteNavegacion {
+    idAgente: Int!
+    nombre: String!
+    nivelAutonomia: Float!
+    estadoOperativo: String!
+    nivelConfianza: Float!
+    origen: String!
+    destino: String!
+    precisionGPS: Float!
+    fechaUltimaCalibracion: String!
+    "Calculado: (precisionGPS + nivelConfianza) / 2"
+    rendimiento: Float!
+}

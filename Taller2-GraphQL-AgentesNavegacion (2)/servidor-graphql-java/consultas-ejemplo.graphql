@@ -1,0 +1,25 @@
+# Copie estas operaciones en http://localhost:8081/graphiql para probar el servidor.
+
+query { agentesNavegacion { idAgente nombre nivelAutonomia estadoOperativo nivelConfianza origen destino precisionGPS fechaUltimaCalibracion rendimiento } }
+
+query { agentesNavegacionPorFiltro(nombre: "navi", estadoOperativo: "ACTIVO") { idAgente nombre estadoOperativo } }
+
+query { agenteNavegacionPorId(idAgente: 1) { idAgente nombre origen destino fechaUltimaCalibracion rendimiento } }
+
+mutation {
+  crearAgenteNavegacion(input: {
+    idAgente: 4, nombre: "Explorador Sur", nivelAutonomia: 72.5, estadoOperativo: "ACTIVO",
+    nivelConfianza: 88, origen: "Barrio Picaleña", destino: "Estadio Manuel Murillo Toro",
+    precisionGPS: 91.3, fechaUltimaCalibracion: "2026-09-29T09:00:00"
+  }) { idAgente nombre rendimiento }
+}
+
+mutation {
+  actualizarAgenteNavegacion(input: {
+    idAgente: 4, nombre: "Explorador Sur v2", nivelAutonomia: 75, estadoOperativo: "MANTENIMIENTO",
+    nivelConfianza: 88, origen: "Barrio Picaleña", destino: "Estadio Manuel Murillo Toro",
+    precisionGPS: 93, fechaUltimaCalibracion: "2026-09-30T09:00:00"
+  }) { idAgente nombre estadoOperativo }
+}
+
+mutation { eliminarAgenteNavegacion(idAgente: 4) { idAgente nombre } }
